@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.cloud</groupId>
+    <artifactId>spring-cloud-application</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>cloud-common</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <maven.test.skip>true</maven.test.skip>
+        <java.version>1.8</java.version>
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <spring-cloud-alibab.version>2.2.7.RELEASE</spring-cloud-alibab.version>
+        <lombok.version>1.18.10</lombok.version>
+
+
+        <!-- 数据库 驱动版本 -->
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
+        <sqljdbc4.version>4.0</sqljdbc4.version>
+        <pagehelper.boot.version>1.2.12</pagehelper.boot.version>
+        <mapper.starter.version>2.1.5</mapper.starter.version>
+        <mybatis.plus.version>3.5.2</mybatis.plus.version>
+        <druid.version>1.2.11</druid.version>
+
+        <!--        Micrometer  Java 平台上的性能数据收集-->
+        <micrometer.version>1.5.1</micrometer.version>
+
+        <!-- java jwt 版本 -->
+        <java-jwt.version>3.10.3</java-jwt.version>
+
+        <!-- xxl job 定时器 版本 -->
+        <xxl-job.version>2.3.1</xxl-job.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibab.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--        请求验证-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.0.Final</version>
+            </dependency>
+
+            <!-- 数据库驱动 -->
+            <!-- mysql 驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
