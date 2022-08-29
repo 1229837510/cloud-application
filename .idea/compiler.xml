@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-common" />
+        <module name="cloud-genertor" />
       </profile>
     </annotationProcessing>
   </component>

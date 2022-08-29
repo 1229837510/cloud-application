@@ -1,9 +1,6 @@
-package com.cloud.common.model;
+package com.cloud.common.model.web;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,12 +14,6 @@ import java.util.Date;
 @Accessors(chain = true)
 public class BaseEntity implements Serializable {
 
-    private static final long serialVersionUID=1L;
-
-    @ApiModelProperty(value = "讲师ID")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private String id;
-
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
@@ -31,4 +22,7 @@ public class BaseEntity implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer deleted;
 }
