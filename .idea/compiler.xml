@@ -7,9 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cloud-common" />
-        <module name="cloud-genertor" />
+        <module name="common-base" />
+        <module name="common-persist" />
+        <module name="my-common" />
+        <module name="cloud-admin" />
+        <module name="cloud-movie" />
+        <module name="cloud-generator" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cloud-movie" options="" />
+    </option>
   </component>
 </project>

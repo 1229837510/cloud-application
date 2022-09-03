@@ -8,21 +8,22 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.cloud</groupId>
-    <artifactId>cloud-admin</artifactId>
+    <artifactId>movie</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>admin</name>
+    <name>movie</name>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>common-persist</artifactId>
+            <artifactId>common-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>common-base</artifactId>
+            <artifactId>common-persist</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- druid数据源驱动 -->
@@ -31,37 +32,16 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.21</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--mybatis-plus-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-        </dependency>
-
-        <!--mysql-->
+        <!--mysql驱动-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
-
-        <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
+            <groupId>org.cloud</groupId>
+            <artifactId>my-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -80,15 +60,6 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
-        <!--json-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

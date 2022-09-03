@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.common.movie.mapper.RelationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cloud.common.movie.po.Relation">
+        <id column="id" property="id" />
+        <result column="au_id" property="auId" />
+        <result column="re_download" property="reDownload" />
+        <result column="mo_id" property="moId" />
+        <result column="re_score" property="reScore" />
+        <result column="re_watch" property="reWatch" />
+    </resultMap>
+
+</mapper>
