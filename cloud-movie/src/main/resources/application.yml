@@ -1,13 +1,8 @@
-server:
-  port: 8120 # 服务端口
-  servlet:
-    context-path: /movie-service
-
 spring:
   profiles:
     active: dev # 环境设置
   application:
-    name: service_edu # 服务名
+    name: movie-service # 服务名
   datasource: # mysql数据库连接
     url: jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=false
     #type: com.alibaba.druid.pool.DruidDataSource
