@@ -1,18 +1,19 @@
 package com.cloud.movie.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.cloud.common.movie.dto.ResultDto;
-import com.cloud.common.persist.util.QueryUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.cloud.common.movie.po.Result;
-import com.cloud.movie.service.ResultService;
 import com.cloud.common.base.config.StringConstant;
 import com.cloud.common.base.excetion.CustomException;
 import com.cloud.common.base.result.R;
+import com.cloud.common.base.util.BeanCopyUtils;
 import com.cloud.common.base.web.QueryVo;
+import com.cloud.common.movie.dto.ResultDto;
+import com.cloud.common.movie.po.Result;
+import com.cloud.common.persist.util.QueryUtils;
+import com.cloud.movie.service.ResultService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -43,8 +44,7 @@ public class ResultController {
      */
     @PostMapping("/save")
     public R save(@RequestBody ResultDto resultDto) {
-        Result result = new Result();
-        BeanUtils.copyProperties(resultDto, Result.class);
+        Result result = BeanCopyUtils.copyBean(resultDto, Result.class);
         return R.status(resultService.save(result));
     }
 
@@ -107,10 +107,12 @@ public class ResultController {
      */
     @PostMapping("/page")
     public R detail(@RequestBody QueryVo queryVo) {
-        IPage<ResultDto> pages = resultService.getBaseMapper().dtoPage(
-                QueryUtils.getPage(queryVo.getQuery()),
+        log.info("query:{}", queryVo.getQuery());
+        log.info("paraMap:{}", queryVo.getParamMap());
+        IPage<ResultDto> page = resultService.getBaseMapper().dtoPage(QueryUtils.getPage(queryVo.getQuery()),
                 QueryUtils.getQueryWrapper(queryVo.getParamMap(), ResultDto.class));
-        return R.ok().data("page", pages);
+
+        return R.ok().data("page", page);
     }
 
 }

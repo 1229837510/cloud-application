@@ -26,5 +26,5 @@ public interface ResultMapper extends MyBaseMapper<Result> {
   * @param queryWrapper 查询条件
   * @return
   */
-  IPage<ResultDto> dtoPage(IPage<?> page, @Param(Constants.WRAPPER) Wrapper<ResultDto> queryWrapper);
+  IPage<ResultDto> dtoPage(IPage<ResultDto> page, @Param(Constants.WRAPPER) Wrapper<ResultDto> queryWrapper);
 }

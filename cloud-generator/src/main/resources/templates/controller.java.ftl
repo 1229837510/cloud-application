@@ -10,7 +10,8 @@ import com.cloud.common.base.result.R;
 import com.cloud.common.base.web.QueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.BeanUtils;
+import com.cloud.common.base.util.BeanCopyUtils;
+import com.cloud.common.persist.util.QueryUtils;
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
 <#else>
@@ -57,8 +58,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/save")
     public R save(@RequestBody ${entity}Dto ${entity?uncap_first}Dto){
-    ${entity} ${entity?uncap_first} = new ${entity}();
-    BeanUtils.copyProperties(${entity?uncap_first}Dto,${entity}.class);
+    ${entity} ${entity?uncap_first} = BeanCopyUtils.copyBean(${entity?uncap_first}Dto, ${entity}.class);
     return R.status(${table.serviceName?uncap_first}.save(${entity?uncap_first}));
     }
 

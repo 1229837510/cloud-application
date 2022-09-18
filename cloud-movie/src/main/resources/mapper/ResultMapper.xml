@@ -10,6 +10,12 @@
     </resultMap>
 
     <sql id="baseSql">
-        title, movie_country, year
+       id, title, movie_country, year
     </sql>
+
+    <select id="dtoPage" resultType="com.cloud.common.movie.dto.ResultDto">
+        select <include refid="baseSql"/>
+        from result
+        ${ew.customSqlSegment}
+    </select>
 </mapper>

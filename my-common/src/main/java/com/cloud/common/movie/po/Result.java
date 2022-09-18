@@ -4,8 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.cloud.common.base.web.AbsPo;
 import com.cloud.common.base.web.BaseEntity;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -23,7 +27,7 @@ import lombok.Setter;
 @Setter
 @TableName("result")
 @ApiModel(value = "Result对象", description = "")
-public class Result extends BaseEntity {
+public class Result extends AbsPo {
 
     private static final long serialVersionUID = 1L;
 
