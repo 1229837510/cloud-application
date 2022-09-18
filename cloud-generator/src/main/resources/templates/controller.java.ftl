@@ -58,6 +58,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/save")
     public R save(@RequestBody ${entity}Dto ${entity?uncap_first}Dto){
+    log.info("save {}",${entity?uncap_first}Dt);
     ${entity} ${entity?uncap_first} = BeanCopyUtils.copyBean(${entity?uncap_first}Dto, ${entity}.class);
     return R.status(${table.serviceName?uncap_first}.save(${entity?uncap_first}));
     }
@@ -69,6 +70,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/detail")
     public R detail(@RequestBody ${entity}Dto ${entity?uncap_first}Dto) {
+    log.info("detail {}",${entity?uncap_first}Dt);
     return R.ok().data("${entity?uncap_first}Dto", ${table.serviceName?uncap_first}.getById(${entity?uncap_first}Dto.getId()));
     }
 
@@ -80,6 +82,7 @@ public class ${table.controllerName} {
      */
      @PostMapping("/delete")
      public R delete(@RequestBody ${entity}Dto ${entity?uncap_first}Dto) {
+     log.info("delete {}",${entity?uncap_first}Dto);
      boolean success = ${table.serviceName?uncap_first}.removeById(${entity?uncap_first}.getId());
      if (!success) {
      throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -88,13 +91,14 @@ public class ${table.controllerName} {
      }
 
      /**
-     * 批量删除用户
+     * 批量删除
      *
      * @param paramMap map集合
      * @return
      */
      @PostMapping("/deleteBatch")
      public R deleteBatch(@RequestBody Map<String, Object> paramMap) {
+     log.info("deleteBatch {}",paramMap);
      boolean success = ${table.serviceName?uncap_first}.removeByIds((List) paramMap.get("idList"));
      if (!success) {
      throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -109,7 +113,8 @@ public class ${table.controllerName} {
      */
      @PostMapping("/list")
      public R dtoList() {
-     return R.ok().data("list", ${table.serviceName?uncap_first}.list());
+     log.info("list {}",list);
+     return R.ok().data("list", BeanCopyUtils.copyListProperties(${table.serviceName?uncap_first}.list(), ${entity}Dto::new));
      }
 
     /**
@@ -119,6 +124,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/page")
     public R detail(@RequestBody QueryVo queryVo) {
+    log.info("page {}",queryVo);
     IPage<${entity}Dto> pages = ${table.serviceName?uncap_first}.getBaseMapper().dtoPage(
     QueryUtils.getPage(queryVo.getQuery()),
     QueryUtils.getQueryWrapper(queryVo.getParamMap(), ${entity}Dto.class));

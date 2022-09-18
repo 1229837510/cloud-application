@@ -7,6 +7,7 @@ import com.cloud.common.base.result.R;
 import com.cloud.common.base.util.BeanCopyUtils;
 import com.cloud.common.base.web.QueryVo;
 import com.cloud.common.movie.dto.ResultDto;
+import com.cloud.common.movie.dto.UserDto;
 import com.cloud.common.movie.po.Result;
 import com.cloud.common.persist.util.QueryUtils;
 import com.cloud.movie.service.ResultService;
@@ -96,7 +97,7 @@ public class ResultController {
      */
     @PostMapping("/list")
     public R dtoList() {
-        return R.ok().data("list", resultService.list());
+        return R.ok().data("list", BeanCopyUtils.copyListProperties(resultService.list(), ResultDto::new));
     }
 
     /**
@@ -107,8 +108,6 @@ public class ResultController {
      */
     @PostMapping("/page")
     public R detail(@RequestBody QueryVo queryVo) {
-        log.info("query:{}", queryVo.getQuery());
-        log.info("paraMap:{}", queryVo.getParamMap());
         IPage<ResultDto> page = resultService.getBaseMapper().dtoPage(QueryUtils.getPage(queryVo.getQuery()),
                 QueryUtils.getQueryWrapper(queryVo.getParamMap(), ResultDto.class));
 

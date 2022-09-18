@@ -22,7 +22,7 @@ import java.util.Map;
  * @date 2022-9-3
  */
 public class QueryUtils {
-    private static Map<String, Object> exclude = new HashMap();
+    private static Map<String, Object> exclude = new HashMap<>();
 
     public QueryUtils() {
     }
