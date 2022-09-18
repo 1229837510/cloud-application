@@ -14,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-09-03
  */
 @Service
-public class UserService extends MyBaseService<UserMapper,User> {
+public class UserService extends MyBaseService<UserMapper, User> {
 
 }

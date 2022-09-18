@@ -15,4 +15,7 @@
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <sql id="baseSql">
+
+    </sql>
 </mapper>
