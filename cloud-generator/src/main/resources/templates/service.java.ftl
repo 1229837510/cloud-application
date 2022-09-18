@@ -3,6 +3,7 @@ package ${package.Service};
 import ${package.Entity}.${entity};
 import com.cloud.common.persist.MyBaseService;
 import ${package.Mapper}.${table.mapperName};
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
