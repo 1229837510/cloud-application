@@ -5,11 +5,6 @@ other:
       port: 8848    # 端口号
       namespace: 57216508-8a88-4cef-9763-92726a19d9b0
 
-server:
-  port: 10001
-  servlet:
-    context-path: /movie-service
-
 spring:
   application:
     name: movie-service
@@ -20,4 +15,9 @@ spring:
         prefix: ${spring.application.name} # prefix 默认为 spring.application.name，可以通过spring.cloud.nacos.config.prefix配置
         file-extension: yml # 配置内容的数据格式 默认=properties yaml
         namespace: ${other.server.nacos.namespace} # 命名空间 开发、测试、生产通过不同的
-        group: ${spring.application.name}-test
+        group: ${spring.application.name}-fcy
+
+        shared-configs[0]:
+          dataId: common-service.yml
+          group: common
+          refresh: true
