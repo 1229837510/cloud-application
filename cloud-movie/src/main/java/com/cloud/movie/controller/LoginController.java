@@ -2,6 +2,8 @@ package com.cloud.movie.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cloud.common.base.result.R;
+import com.cloud.common.base.util.DrawImageUtil;
+import com.cloud.common.base.util.HeaUtil;
 import com.cloud.movie.dto.LoginDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -18,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,8 +40,10 @@ public class LoginController {
      */
     @PostMapping("/login")
     public R login(@RequestBody LoginDto loginDto){
+        String signSha256 = HeaUtil.sha256_HMAC("access_token=" + loginDto.getAccessToken() + "&openid=" +
+                loginDto.getOpenId(), "your-secret-string");
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        String cloudUrl = "https://c6eee399-cd76-4a3c-9a89-fb65e8021c33.bspapp.com/loginTest?access_token=%s&openid=%s";
+        String cloudUrl = "https://c6eee399-cd76-4a3c-9a89-fb65e8021c33.bspapp.com/functionName?access_token=%s&openid=%s";
         String url = String.format(cloudUrl, loginDto.getAccessToken(), loginDto.getOpenId());
         HttpGet httpGet = new HttpGet(url);
         CloseableHttpResponse response = null;
@@ -44,6 +51,7 @@ public class LoginController {
         try {
             response = client.execute(httpGet);
             HttpEntity responseEntity = response.getEntity();
+            System.out.println(response);
             if (!ObjectUtils.isEmpty(responseEntity)){
                 System.out.println("响应内容长度为："+responseEntity.getContentLength());
                 System.out.println("响应内容为："+ EntityUtils.toString(responseEntity));
@@ -52,5 +60,10 @@ public class LoginController {
             e.printStackTrace();
         }
         return R.ok();
+    }
+
+    public static void main(String[] args) throws IOException {
+        File fileName = DrawImageUtil.drawImage("我是三星我是三星");
+        System.out.println(fileName);
     }
 }

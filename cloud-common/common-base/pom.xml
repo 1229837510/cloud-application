@@ -12,4 +12,5 @@
     <artifactId>common-base</artifactId>
     <name>${project.artifactId}</name>
 
+
 </project>
