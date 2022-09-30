@@ -1,6 +1,5 @@
 package com.cloud.movie.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.cloud.common.base.result.R;
 import com.cloud.common.base.util.DrawImageUtil;
 import com.cloud.common.base.util.HeaUtil;
@@ -9,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -20,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageReader;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -65,5 +62,34 @@ public class LoginController {
     public static void main(String[] args) throws IOException {
         File fileName = DrawImageUtil.drawImage("我是三星我是三星");
         System.out.println(fileName);
+    }
+
+    public InputStream drawImage(String name) {
+        ImageOutputStream imageOutputStream = null;
+        InputStream inputStream = null;
+        try {
+            // 获取图片的缓冲区，也就是所谓的画布
+            BufferedImage bufferedImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
+            //获取画笔，画笔用于在画布上进行绘制
+            Graphics paint = bufferedImage.getGraphics();
+            //设置画笔的颜色
+            paint.setColor(Color.WHITE);
+            //绘制画布的背景色
+            paint.fillRect(0, 0, 200, 200);
+            Font font = new Font("微软雅黑", Font.BOLD, 40);
+            paint.setFont(font);
+            //设置画笔的颜色
+            paint.setColor(Color.blue);
+            //绘制显示的具体内容
+            paint.drawString(name, (bufferedImage.getWidth() - font.getSize() * name.length()) / 2, (bufferedImage.getHeight() - font.getSize()) / 2);
+            //绘制完成保存文件
+            ByteArrayOutputStream bs = new ByteArrayOutputStream();
+            imageOutputStream = ImageIO.createImageOutputStream(bs);
+            ImageIO.write(bufferedImage, ".jpg", imageOutputStream);
+            inputStream = new ByteArrayInputStream(bs.toByteArray());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return inputStream;
     }
 }

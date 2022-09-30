@@ -4,7 +4,16 @@ other:
       host: localhost #nacos 地址
       port: 8848    # 端口号
       namespace: 57216508-8a88-4cef-9763-92726a19d9b0
-
+# 异步线程配置
+# 配置核心线程数
+async:
+  executor:
+    thread:
+      core_pool_size: 5 # 异步线程配置  配置核心线程数
+      max_pool_size: 5  # 配置最大线程数
+      queue_capacity: 9999  # 配置队列大小
+      name:
+        prefix: async-service-  # 配置线程池中的线程的名称前缀
 spring:
   application:
     name: movie-service
