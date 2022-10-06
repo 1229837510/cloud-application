@@ -8,4 +8,5 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
  * @date 2022/9/3
  */
 public abstract class MyBaseService<M extends BaseMapper<T>, T> extends ServiceImpl<M,T> {
+    public MyBaseService(){}
 }

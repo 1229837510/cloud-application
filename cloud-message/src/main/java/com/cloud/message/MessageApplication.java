@@ -1,4 +1,4 @@
-package com.cloud.admin;
+package com.cloud.message;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,16 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(
-        scanBasePackages = {"com.cloud", "com.cloud.admin"}
-        )
-//@EnableDiscoveryClient
+@SpringBootApplication
 @EnableDiscoveryClient
-public class CloudAdminApplication {
-    protected static final Logger logger = LoggerFactory.getLogger(CloudAdminApplication.class);
+public class MessageApplication {
 
+    protected static final Logger logger = LoggerFactory.getLogger(MessageApplication.class);
     public static void main(String[] args) {
-        SpringApplication.run(CloudAdminApplication.class, args);
+        SpringApplication.run(MessageApplication.class, args);
         logger.info("项目已成功运行！！！！！！！！！");
     }
 

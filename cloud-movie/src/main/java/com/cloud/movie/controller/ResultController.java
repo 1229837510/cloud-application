@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.cloud.common.base.config.StringConstant;
 import com.cloud.common.base.excetion.CustomException;
 import com.cloud.common.base.result.R;
-import com.cloud.common.base.util.BeanCopyUtils;
+import com.cloud.common.base.util.BeanCopyUtil;
 import com.cloud.common.base.web.QueryVo;
 import com.cloud.common.movie.dto.ResultDto;
 import com.cloud.common.movie.dto.UserDto;
@@ -45,7 +45,8 @@ public class ResultController {
      */
     @PostMapping("/save")
     public R save(@RequestBody ResultDto resultDto) {
-        Result result = BeanCopyUtils.copyBean(resultDto, Result.class);
+        log.info("save {}",resultDto);
+        Result result = BeanCopyUtil.copyBean(resultDto, Result.class);
         return R.status(resultService.save(result));
     }
 
@@ -57,6 +58,7 @@ public class ResultController {
      */
     @PostMapping("/detail")
     public R detail(@RequestBody ResultDto resultDto) {
+        log.info("detail {}",resultDto);
         return R.ok().data("ResultDto", resultService.getById(resultDto.getId()));
     }
 
@@ -68,6 +70,7 @@ public class ResultController {
      */
     @PostMapping("/delete")
     public R delete(@RequestBody ResultDto resultDto) {
+        log.info("delete {}",resultDto);
         boolean success = resultService.removeById(resultDto.getId());
         if (!success) {
             throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -83,6 +86,7 @@ public class ResultController {
      */
     @PostMapping("/deleteBatch")
     public R deleteBatch(@RequestBody Map<String, Object> paramMap) {
+        log.info("deleteBatch {}",paramMap);
         boolean success = resultService.removeByIds((List) paramMap.get("idList"));
         if (!success) {
             throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -97,7 +101,8 @@ public class ResultController {
      */
     @PostMapping("/list")
     public R dtoList() {
-        return R.ok().data("list", BeanCopyUtils.copyListProperties(resultService.list(), ResultDto::new));
+        log.info("list {}","list");
+        return R.ok().data("list", BeanCopyUtil.copyListProperties(resultService.list(), ResultDto::new));
     }
 
     /**
@@ -108,6 +113,7 @@ public class ResultController {
      */
     @PostMapping("/page")
     public R detail(@RequestBody QueryVo queryVo) {
+        log.info("list {}","queryVo");
         IPage<ResultDto> page = resultService.getBaseMapper().dtoPage(QueryUtils.getPage(queryVo.getQuery()),
                 QueryUtils.getQueryWrapper(queryVo.getParamMap(), ResultDto.class));
 

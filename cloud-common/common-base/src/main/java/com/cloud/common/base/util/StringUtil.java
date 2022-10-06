@@ -1,5 +1,6 @@
 package com.cloud.common.base.util;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 import java.util.regex.Matcher;

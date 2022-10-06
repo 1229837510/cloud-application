@@ -12,11 +12,11 @@ import java.util.function.Supplier;
  * @author fangcy
  * @date 2022-09-18
  */
-public class BeanCopyUtils extends BeanUtils {
+public class BeanCopyUtil extends BeanUtils {
 
-    private BeanCopyUtils() {
+    private BeanCopyUtil() {
         // 防止实例化工具类
-        throw new AssertionError("No " + BeanCopyUtils.class.getName() + " instances for you !");
+        throw new AssertionError("No " + BeanCopyUtil.class.getName() + " instances for you !");
     }
 
     /**

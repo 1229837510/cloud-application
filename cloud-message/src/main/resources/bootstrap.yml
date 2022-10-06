@@ -1,0 +1,22 @@
+other:
+  server:
+    nacos:
+      host: 192.168.145.1 #nacos 主机host
+      port: 8848    #端口号
+      namespace: 57216508-8a88-4cef-9763-92726a19d9b0 #命名空间
+spring:
+  application:
+    name: message-service
+  cloud:
+    nacos:
+      config:
+        server-addr: ${other.server.nacos.host}:${other.server.nacos.port} # 配置 服务地址
+        prefix: ${spring.application.name} # prefix 默认为 spring.application.name，可以通过spring.cloud.nacos.config.prefix配置
+        file-extension: yml # 配置内容的数据格式 默认=properties yaml
+        namespace: ${other.server.nacos.namespace} # 命名空间 开发、测试、生产通过不同的
+        group: ${spring.application.name}
+        shared-configs[0]:
+          dataId: common-service.yml
+          group: common
+          refresh: true
+

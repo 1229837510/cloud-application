@@ -10,7 +10,7 @@ import com.cloud.common.base.result.R;
 import com.cloud.common.base.web.QueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import com.cloud.common.base.util.BeanCopyUtils;
+import com.cloud.common.base.util.BeanCopyUtil;
 import com.cloud.common.persist.util.QueryUtils;
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
@@ -59,7 +59,7 @@ public class ${table.controllerName} {
     @PostMapping("/save")
     public R save(@RequestBody ${entity}Dto ${entity?uncap_first}Dto){
     log.info("save {}",${entity?uncap_first}Dt);
-    ${entity} ${entity?uncap_first} = BeanCopyUtils.copyBean(${entity?uncap_first}Dto, ${entity}.class);
+    ${entity} ${entity?uncap_first} = BeanCopyUtil.copyBean(${entity?uncap_first}Dto, ${entity}.class);
     return R.status(${table.serviceName?uncap_first}.save(${entity?uncap_first}));
     }
 
@@ -114,7 +114,7 @@ public class ${table.controllerName} {
      @PostMapping("/list")
      public R dtoList() {
      log.info("list {}",list);
-     return R.ok().data("list", BeanCopyUtils.copyListProperties(${table.serviceName?uncap_first}.list(), ${entity}Dto::new));
+     return R.ok().data("list", BeanCopyUtil.copyListProperties(${table.serviceName?uncap_first}.list(), ${entity}Dto::new));
      }
 
     /**
