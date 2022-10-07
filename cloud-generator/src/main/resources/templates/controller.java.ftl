@@ -11,6 +11,7 @@ import com.cloud.common.base.web.QueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import com.cloud.common.base.util.BeanCopyUtil;
+import lombok.extern.slf4j.Slf4j;
 import com.cloud.common.persist.util.QueryUtils;
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
@@ -58,7 +59,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/save")
     public R save(@RequestBody ${entity}Dto ${entity?uncap_first}Dto){
-    log.info("save {}",${entity?uncap_first}Dt);
+    log.info("save ${entity}");
     ${entity} ${entity?uncap_first} = BeanCopyUtil.copyBean(${entity?uncap_first}Dto, ${entity}.class);
     return R.status(${table.serviceName?uncap_first}.save(${entity?uncap_first}));
     }
@@ -70,7 +71,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/detail")
     public R detail(@RequestBody ${entity}Dto ${entity?uncap_first}Dto) {
-    log.info("detail {}",${entity?uncap_first}Dt);
+    log.info("detail ${entity}");
     return R.ok().data("${entity?uncap_first}Dto", ${table.serviceName?uncap_first}.getById(${entity?uncap_first}Dto.getId()));
     }
 
@@ -82,7 +83,7 @@ public class ${table.controllerName} {
      */
      @PostMapping("/delete")
      public R delete(@RequestBody ${entity}Dto ${entity?uncap_first}Dto) {
-     log.info("delete {}",${entity?uncap_first}Dto);
+     log.info("delete ${entity}");
      boolean success = ${table.serviceName?uncap_first}.removeById(${entity?uncap_first}.getId());
      if (!success) {
      throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -98,7 +99,7 @@ public class ${table.controllerName} {
      */
      @PostMapping("/deleteBatch")
      public R deleteBatch(@RequestBody Map<String, Object> paramMap) {
-     log.info("deleteBatch {}",paramMap);
+     log.info("deleteBatch ${entity}");
      boolean success = ${table.serviceName?uncap_first}.removeByIds((List) paramMap.get("idList"));
      if (!success) {
      throw new CustomException(StringConstant.DATA_VERSION_ERROR);
@@ -113,7 +114,7 @@ public class ${table.controllerName} {
      */
      @PostMapping("/list")
      public R dtoList() {
-     log.info("list {}",list);
+     log.info("list ${entity}");
      return R.ok().data("list", BeanCopyUtil.copyListProperties(${table.serviceName?uncap_first}.list(), ${entity}Dto::new));
      }
 
@@ -124,7 +125,7 @@ public class ${table.controllerName} {
     */
     @PostMapping("/page")
     public R detail(@RequestBody QueryVo queryVo) {
-    log.info("page {}",queryVo);
+    log.info("page ${entity}");
     IPage<${entity}Dto> pages = ${table.serviceName?uncap_first}.getBaseMapper().dtoPage(
     QueryUtils.getPage(queryVo.getQuery()),
     QueryUtils.getQueryWrapper(queryVo.getParamMap(), ${entity}Dto.class));

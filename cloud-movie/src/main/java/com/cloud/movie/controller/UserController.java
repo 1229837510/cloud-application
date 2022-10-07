@@ -12,7 +12,6 @@ import com.cloud.common.persist.util.QueryUtils;
 import com.cloud.movie.config.MovieProperties;
 import com.cloud.movie.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -47,6 +46,7 @@ public class UserController {
      */
     @PostMapping("/save")
     public R save(@RequestBody UserDto userDto) {
+        log.info("save User");
         User user = BeanCopyUtil.copyBean(userDto, User.class);
         return R.status(userService.save(user));
     }
