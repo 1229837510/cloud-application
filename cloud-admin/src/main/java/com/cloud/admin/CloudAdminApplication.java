@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(
         scanBasePackages = {"com.cloud", "com.cloud.admin"}
         )
-//@EnableDiscoveryClient
+@EnableTransactionManagement(proxyTargetClass = true)
 @EnableDiscoveryClient
 public class CloudAdminApplication {
     protected static final Logger logger = LoggerFactory.getLogger(CloudAdminApplication.class);
