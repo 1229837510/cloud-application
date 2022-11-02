@@ -20,22 +20,20 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class DrawImageUtil {
     public static File drawImage(String name) {
-        File file = null;
-        List<String> ls = new ArrayList<>((int) Math.round(name.length() / 4));
         try {
             // 获取图片的缓冲区，也就是所谓的画布
             BufferedImage bufferedImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
             //获取画笔，画笔用于在画布上进行绘制
             Graphics paint = bufferedImage.getGraphics();
-            paint.setColor(new Color(0xB0EEEE));
+            paint.setColor(new Color(0xE5E3E3));
             //绘制画布的背景色
             paint.fillRect(0, 0, 200, 200);
             Font font = new Font("微软雅黑", Font.BOLD, 40);
             paint.setFont(font);
             //设置画笔的颜色
-            paint.setColor(new Color(0x53B0EE));
-////            //绘制显示的具体内容
-//            paint.drawString(name, (bufferedImage.getWidth() - font.getSize() * name.length()) / 2, font.getSize() + 60);
+            paint.setColor(new Color(0x0F0F10));
+            //绘制显示的具体内容
+            drawString(paint, name, bufferedImage, font);
             //绘制完成保存文件
             ImageIO.write(bufferedImage, "jpg", new FileOutputStream(name + ".jpg"));
         } catch (IOException e) {
@@ -44,4 +42,15 @@ public class DrawImageUtil {
         return new File(name + ".jpg");
     }
 
+    public static void drawString(Graphics paint, String name, BufferedImage bufferedImage, Font font) {
+        int length = name.length();
+        int batchSize = 4;
+        int round = length / batchSize;
+        for (int i = 0; i <= round; i++) {
+            int fromIndex = i * batchSize;
+            int toIndex = (i < round) ? ((i + 1) * batchSize) : length;
+            String splitName = name.substring(fromIndex, toIndex);
+            paint.drawString(splitName, (bufferedImage.getWidth() - font.getSize() * splitName.length()) / 2, bufferedImage.getHeight() / 2 + (i * font.getSize() ));
+        }
+    }
 }
