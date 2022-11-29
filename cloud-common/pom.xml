@@ -69,6 +69,13 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
             </dependency>
+
+        <!-- Orika 字节码拷贝工具 -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.4</version>
+        </dependency>
     </dependencies>
 
     <build>

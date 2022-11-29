@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.cloud.common.base.config.StringConstant;
 import com.cloud.common.base.excetion.CustomException;
 import com.cloud.common.base.result.R;
-import com.cloud.common.base.util.BeanCopyUtil;
+import com.cloud.common.base.util.BeanCopy;
 import com.cloud.common.base.web.QueryVo;
 import com.cloud.common.movie.dto.ResultDto;
-import com.cloud.common.movie.dto.UserDto;
 import com.cloud.common.movie.po.Result;
 import com.cloud.common.persist.util.QueryUtils;
 import com.cloud.movie.service.ResultService;
@@ -46,7 +45,7 @@ public class ResultController {
     @PostMapping("/save")
     public R save(@RequestBody ResultDto resultDto) {
         log.info("save {}",resultDto);
-        Result result = BeanCopyUtil.copyBean(resultDto, Result.class);
+        Result result = BeanCopy.copyBean(resultDto, Result.class);
         return R.status(resultService.save(result));
     }
 
@@ -102,7 +101,7 @@ public class ResultController {
     @PostMapping("/list")
     public R dtoList() {
         log.info("list {}","list");
-        return R.ok().data("list", BeanCopyUtil.copyListProperties(resultService.list(), ResultDto::new));
+        return R.ok().data("list", BeanCopy.copyListProperties(resultService.list(), ResultDto::new));
     }
 
     /**

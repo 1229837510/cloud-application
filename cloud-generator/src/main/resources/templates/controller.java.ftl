@@ -10,7 +10,7 @@ import com.cloud.common.base.result.R;
 import com.cloud.common.base.web.QueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import com.cloud.common.base.util.BeanCopyUtil;
+import com.cloud.common.base.util.BeanCopy;
 import lombok.extern.slf4j.Slf4j;
 import com.cloud.common.persist.util.QueryUtils;
 <#if restControllerStyle>

@@ -8,13 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="movie" />
-        <module name="common-base" />
-        <module name="api-gateway" />
-        <module name="common-persist" />
         <module name="my-common" />
         <module name="cloud-message" />
+        <module name="api-gateway" />
         <module name="cloud-admin" />
         <module name="cloud-movie" />
+        <module name="common-base" />
         <module name="cloud-generator" />
       </profile>
     </annotationProcessing>
